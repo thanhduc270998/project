@@ -12,6 +12,7 @@ session_start();
     <link rel="stylesheet" href="assets-css/fonts/fontawesome-free-5.14.0-web/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <!-- Block Element Modifier -->
     <div class="app">
@@ -157,8 +158,25 @@ session_start();
                         </div>
                     </div>
                     <div class="header__search">
+                        <div class="header__search-input-wrap">
                             <input type="text" class="header__search-input" placeholder="Nhập thông tin sản phẩm">
-                            <div class="header__search-select">
+                            <!-- search history -->
+                            <div class="header__search-history">
+                                <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
+                                <ul class="header__search-history-list">
+                                    <li class="header__search-history-item">
+                                        <a href="">Tăng người theo dõi giá rẻ</a>
+                                    </li>
+                                    <li class="header__search-history-item">
+                                        <a href="">Tăng like giá rẻ</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+                        <div class="header__search-select">
                             <span class="header__search-select-label"> Trong Shop</span>
                             <i class=" header__search-select-icon fas fa-angle-down"></i>
                             <ul class="header__search-option">
@@ -169,15 +187,23 @@ session_start();
                                     <span>Ngoài Shop <i class="fas fa-check"></i></span>
                                 </li>
                             </ul>
-                            </div>
-                            <button class="header__search-btn">
-                                <i class=" header__search-btn-icon fas fa-search"></i></button>
+                        </div>
+                        <button class="header__search-btn">
+                            <i class=" header__search-btn-icon fas fa-search"></i></button>
                     </div>
-                    <div class="header__cart ">   
-                    <i class="header__cart-icon fas fa-shopping-cart"></i>
+                    <!-- Cart Layout -->
+                    <div class="header__cart ">
+                        <div class="header__cart-wrap">
+                            <i class="header__cart-icon fas fa-shopping-cart"></i>
+                            <div class="header__cart-list header__cart-list--no-cart">
+                                <img src="./assets-css/img/cart-empty.png" alt="" class="header__cart-list--no-cart-img">
+                                <span class="header__cart-list--no-cart-msg">
+                                    Chưa có sản phẩm
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
         </header>
