@@ -11,6 +11,7 @@ session_start();
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets-css/fonts/fontawesome-free-5.14.0-web/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -48,7 +49,7 @@ session_start();
                     </ul>
                     <ul class="header__navbar-list">
                         <li class="header__navbar-item header__navbar-item--has-notify">
-                            <a href="" class="header__navbar-item-link"> <i class="header__navbar-icon fas fa-bell"></i>
+                            <a href="" class="header__navbar-item-link"> <i class="header__navbar-icon far fa-bell"></i>
                                 Thông báo
                             </a>
                             <div class="header__notify">
@@ -132,11 +133,23 @@ session_start();
                                 <i class="header__navbar-icon far fa-question-circle"></i>
                                 Trợ giúp
                             </a>
+
                         </li>
                         <?php
                         if (isset($_SESSION['auth'])) :
-                            echo '<li class="header__navbar-item">';
-                            echo $_SESSION['auth']['username'];
+                            echo '<li class="header__navbar-item header__navbar-user">';
+                            echo '<img src="https://scontent.fhan3-1.fna.fbcdn.net/v/t31.0-8/21427195_674848616045485_5367077445336386955_o.jpg?_nc_cat=109&_nc_sid=09cbfe&_nc_ohc=gBH1tekDbgAAX8rieRx&_nc_ht=scontent.fhan3-1.fna&oh=eace6e09da71c682fcf75f8ebddaf97b&oe=5FA6F55C" alt="" class="header__navbar-user-img">' . $_SESSION['auth']['username'];
+                            echo '<ul class="header__navbar-user-menu">';
+                            echo '<li class="header__navbar-user-item">';
+                            echo '<a href="">Tài khoản của tôi</a>';
+                            echo '</li>';
+                            echo '<li class="header__navbar-user-item">';
+                            echo '<a href="">Địa chỉ của tôi</a>';
+                            echo '</li>';
+                            echo '<li class="header__navbar-user-item">';
+                            echo '<a href="">Đơn mua</a>';
+                            echo '</li>';
+                            echo '</ul>';
                             echo '</li>';
                             echo '<a href="logout.php" class="logout">Thoát</a>';
                         else :
@@ -153,10 +166,13 @@ session_start();
                 <!-- header-with-search -->
                 <div class="header-with-search">
                     <div class="header__logo">
-                        <div class="header__logo-img">
-                            <img src="https://i.imgur.com/gAA1F1W.jpg" alt="" style="width: 60px">
-                        </div>
+                        <a href="/" class="header__logo-link">
+                            <div class="header__logo-img">
+                                <img src="https://i.imgur.com/gAA1F1W.jpg" alt="" style="width: 60px">
+                            </div>
+                        </a>
                     </div>
+
                     <div class="header__search">
                         <div class="header__search-input-wrap">
                             <input type="text" class="header__search-input" placeholder="Nhập thông tin sản phẩm">
@@ -195,11 +211,72 @@ session_start();
                     <div class="header__cart ">
                         <div class="header__cart-wrap">
                             <i class="header__cart-icon fas fa-shopping-cart"></i>
-                            <div class="header__cart-list header__cart-list--no-cart">
+                            <span class="header__cart-notice">3</span>
+                            <!-- No cart : header__cart-list--no-cart -->
+                            <div class="header__cart-list ">
                                 <img src="./assets-css/img/cart-empty.png" alt="" class="header__cart-list--no-cart-img">
                                 <span class="header__cart-list--no-cart-msg">
                                     Chưa có sản phẩm
                                 </span>
+                                <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+                                <ul class="header__cart-list-item">
+                                    <!-- cart item -->
+                                    <li class="header__cart-item">
+                                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExMVFRIXGBUVFxcXFxgaIBsVGBUYFhgeFxoaHSggGBolGxgYITEiJSkrLy8uGB8zODMsNygtLisBCgoKDg0OGxAQGzAlICYrLTI1LzctLS0rLSstLy8tNS0tLy0tLS0tLjUtLS8tLS8tLS0tMC0tLS0tLS0tLS0tLf/AABEIAKQBMwMBEQACEQEDEQH/xAAcAAEAAgMBAQEAAAAAAAAAAAAABAUDBgcCAQj/xABFEAACAQIDBQUFBgIHBwUAAAABAgADEQQSIQUGMUFREyJhcYEUMpGhsQcjQlLB0TNiU3KTssLh8BU0c4KDkvEWFyREVP/EABsBAQACAwEBAAAAAAAAAAAAAAABBQMEBgIH/8QAOBEAAgECAwQIBgICAgIDAAAAAAECAxEEITEFEkFREyJhcYGRsdEGFDKhwfAj4TNSFUKC8SRicv/aAAwDAQACEQMRAD8Ap50BwogkQQIAgCAIAgCAIAgCAfbQTY+QQIAgCAIAgCAfcpkXWh63JW3rZcz5JPIgCAIAgCAIB9Igmx8ggQBAEAQBAEAQSIIEAQBBIggQBAEAQBAEAQDLQoFzYepnuEHN2Rkp03UdkWdHBqvK56mbsKEY9pZU8PCHaSJlMx5emG4gGeZQjLVHmUIy1RX4rA21X4ftNWpQtnE0q2FtnAgzWNIQBAM+GwxbXgJqYnFxoq2r5F9sbYNbaMt76aa1l+Fzf2X2LGnRVeA9ZSVcVVqfU/DgfSMFsXBYNLo6avzeb83p4WPc1y1uealINxEzU8RUp/SyvxmysHi1atTTfPR+azK/E4UrqNRLrC42Nbqyyl6nzrbfw5UwH8tN71Pnxj3+/oRpvHMiAIBsu7u6zVgKlUlKR4AcW/YeP/mUW0ttRw7dOlnL7L3f72F7s3Y0sQlUq5R+79l+9pu2C2ZRoi1Omq+NtfUnUzk6+Mr13epJv08tDqqGDoUFanFL189SWZrGyVW0t3cPWBugVvzJYH15H1llhdq4nDvKV1yea914Fdidl4aus42fNZP+zQdubFqYZrN3kPuuOB8+h8J2OA2hTxkLxya1XL3Xacfjtn1MJK0s09H+8Ssm+aAgCAIAgCCRBAgCAIJEECAIAgCAIAgH0C8EpXyLvD0Qi2+PnLKnBQjYt6VNQjYyTIZC13Z2e1bEIAt1Rld78MoN7Hre1rf5zUxteNKi7vNqy7zNQpuc0TN+aSLiu4ALopa35rsPjYLMOy5SdDrc2ZMWkqmXI16WJqlXtGhlNxwP1mhXp7ruuJW4qluy3lxIcwGqe6NPMQJirVVSg5vgb2zsFLG4mFCPF68lxfkW6rYWE5ic3OTlLVn2fD0KeHpRpU1aKVl++ps+D3JxDqGYohOoVr39bDSe1Skyuq7ZoQlupN9vArqu7+IWsKGS7kXBB7pXm2boPH9RPO472NuOPoSpOrfJed+Vi0q7jYgLcNTZvygkfAkW+Np66KRpx21QcrNNLmaxUpkEqwsQSCDyI0IImNNp3RayjCrCzs4teDTKjFUsrW5cROlwtbpqalx4958d21s75DFypL6dY9z9tPAwzYKkut1NlDEVu8Pu0GZvHXQep+QMq9r414WheP1PJe/h62LXZOCWJr9b6Vm/Y3Db23KmFZD7LUq4e3fqUrMUN7a0+JW2t7zjKGHjWT66UuT4+J206jhwyJux9s0MUmehUV1Fr20Kk6gMp1U+YmKtQqUXuzVj3CpGauifMJ6KLbe9eHwzdmS1XEcqFFS73IuLge7prrNuhg6lVb2kebyRinWjHLV8jNh0fGYYjE0DQZ83cLByoB7jXA0bgbT1Cr8pXU6Mt63hfmu4xVqCxNFwqK1/t2nNsXhzTdkb3lJU+n6T6DRqxq01Ujo1c+fVqUqVRwlqnYwzIYhAEAQBBIggQBAEEiCBAEAQBAEAQCRgFu4+MyUVeaM+HV6iLiWRamxDc6v2faZqdsue12va17e7a8rf+Upb+7Z624e5tfKTtfI2zc7BLTwqEe9UAqMet+HwFh8ZU7Qquddp6LI3MNBRpp8zLi928NVdqj0yztqTnfpbk3QTxTx1enFRi8l2L2PUsPTk7tHPNv4ZKWIqJTBCKQAGvf3QTx1Ivex6WnRYSpKpRjKerKytFRm0im2gt0PhYz1iFeBp4lXpsqJoFUTdmrqTKvakrQjHtO1+CqKliKlR8Ipeb/ov93lU4qiG4dovxvp87Snh9SO8xrksPPd1s/3yOuzcOIPJQXvbUAi/gbX+g+EE3drHqCDlu+iqMZVy/wAhP9bIt/0mrU+o7HZTbwsb9vlc1faS6Ayy2XLOUe45X42orco1eN2vR+5AlwfPjf8AcChag782e3ooFvmTON+IqjeIjDlH1f8ASOx+HqdsPKfN+hL2/sSrinUe1VKOHAs9OkArO1/6TiFtpa0qcPiIUk3uJy4N6LwLqpTc3rZE3Y2xaGETJQphAbXOpLEcCzHVj5zHWr1K0t6bueoU4wVok+YT2UW2908PiW7Xv0cRyr0WyPcCwuRo2gtrrbnNujjKlJbuseTzRinRjJ30fMn7GwtWlSCV63b1AT95kCErfu3AJ1A585hrThOd4R3Vyvc9wi0rN3NI36ohcVcfjRWPnqv0UTstgVHLCWfBtfn8nGbepqOLuuKT/H4Nel2UggCAIAgkQQIAgCCRBAgCAIAgCAIBIwLWcfD4zJRdpoz4eVqiLcyyLU66n+7D/hf4JyD/AM3/AJfku19HgY93P91of8Kn/dE9Yz/PPvfqeaH+OPcixmsZTkm3a2fEVWux77DvWvp3badLW9J12Fju0YrsKWq7zb7So2g1kPjYScQ7QNTFO1NlRNAqiZs1tSJWbUjeEZcn6nafBdZRxNSk/wDtG/k/7LBSQbg2I1BHIykPozV8mdS3Y28uJp2JArKO+vX+ZfA/L4X24T3kcfj8DLDTy+l6P8PtLueyvKzb22UwtMs2rnRE5sf0A5n/ACnmclFG3g8JPE1N1acXy/eByjEV2dmdjdmJYnxOs1G7nZwhGEVGOiK/aTaAS12XHOUu44f42rLdo0uN2/Re5AlwfPzfvs/rg0HTmr39GAt8wZx3xFTaxEZ84+j/ALR2Pw9UToShyfr+soPtR9rStQbD1K4R0ZCKbuoDo17tlNgSG4n8vhMOy+hlCSmldPiloy2q06s5pU033Gr0qG0zxxVVfPEVP8JMsGsN/ovJGxDZOMlq0u9+1zMcHtH/APbU/t60j/4/+i8kZXsbFf7rzfsRcQNppr7RXYfyV6h+RYH5T0o4Z/8AVeSNaps3GwV7X7nf2Z0/7PErew02rtUao5d/vGZmClrL72oFgDbxlDtBw6dqCVlbQigpKHW1Ne36rhsVYfgRVPnq3+KdVsCm4YS74tv8fg4/b1RTxdlwSX5/Jr0uilEAQBAEEiCBAEAQSIIEAQBAEAQBAPoMEp2LrDVg63+PnLKlU343LelUVSNzZBvfiMnZ2p2y5b5Te1rfmtf0ml/xlHe3s9b6/wBG781UtbIqaW0aygKtaoqjQAOwAHgAdJuSoUpO7ir9yMKqSSsm/M9/7Vr/ANPV/tH/AHnn5ej/AKLyRPSz/wBn5kMmZjwVW0K+Y2HAfWaNepvSsuBWYmrvSstERJgNU90amUgzHWpKpBwfE3MBjJ4PEQrw1i/NcV4ot0YEXHCcxOEoScZao+0YbE08TSjWpO8X++fMzYeu1Ng6MVYagjlPKdjJOEZxcZK6ZtlLfxxSsaYNbgGvZfMrxv4D5TL0zsUsthwdS6l1eXHz/fE1bG4x6zl6jFmPM9OgHIeExNt5suaVGFKO5BWRHJhJydkTUqQpwc5uyWbfJFTiauZr8uA8p02Go9DTUePHvPje2NovH4uVbhov/wArT3fazFM5VlxuvtX2esC38Nu6/gOR9D8rys2rgvmqFo/Us17ePrYs9lY35WveX0vJ+/gdFxuEStTKtwOoI5HkROFp1JUp3Wp9BoVnTkpx/wDaNNx+x6tI6qWX8yi49fy+suKWJp1Fk7PkX1HF06iydnyZBVCTYAk9AJnbS1NhtLNl1snd93IaqCqdDoW8LfhHzmlXxkYq0M39jQxGPjBWp5v7L3Nk2njkw9I1G4KLAdTyAmjhcNPE1VTjx48lxZzmLxUcPSdWf/tnKcTXao7OxuzEsfMz6LSpxpQUI6JWPndWpKpNzlq3cxTIYxAEAQBBIggQBAEEiCBAEAQBAEAQBAMlCsUNxPUJuLujJTqSg7os6ONVuJsfH95uwrxlrkWFPEwlrkSAZmTTNi6PNSsq8SBPMqkY6s8SqRjqyvxWOvoug6zUqV3LKJpVsVvZRIU1zTEAQDNh8QV8R0mricLGss8nzLrY+262zp9XOD1j+Vyf6yxp4hW4H0lLVwlWnqr92Z9IwW38Bi0t2ai+Usn98n4NmSa1mW+/G17nipWVeJmenhatTSJWYzbWBwi/kqK/JZvyWnjYr8Tii2g0EucLg40c3m/3Q+d7a+Iau0P44rdp8uL7Ze2i7dSPN050QBANi3e3oagBTqAvS5dV8uo8JSbS2NDEvpKb3Z/Z9/b2l3s7bE8MujqZx+67vY3XBbZoVR3Kq36E2PwOs5Svs/E0H14Pv1XmjqaGPw9ZdSa7tH5MmtUA1JA9ZqqMm7JG25RSu2VG0t58PSBs4qN+VNfieAlnhdj4qu847q5vL7alZidr4aispbz5LP76Gh7Z2xUxLZnNlHuqOAH6nxnYYLAUsJDdhrxfF/vI5DG4+ri5709OC4IrpumkIAgCAIAgkQQIAgCCRBAgCAIAgCAIAgCAexTJUtY5QQCeQJvYHzsfgZF1ex63Xa/A9Nh3C5ipCm2ttNc1vjlb4GFJXsS6ckt5rL99jFJPAgCAIAgCAexTJUtY5QQCeQJva/nlPwMi6vY9brtfgeLyTyIAgCAIAgHqlTLMFUEsSAAOJJNgB4yG7K7PUU5OyPopHKWscoIUnlcgkDzsD8IvnYbrtvcD52Zy5rHLfLfle17edovnYbrtvcDzJPIgCAIAgCAIAgkQQIAgCCRBAgEnAYM1WtewGpPT48OevKxmjjsZ8vFWzbLLZ2A+ak3J2iv2xebN2Lhq4+7qsw1GYad4AECzLwIv5j5U9TaGLpvrZdlkXsNmYKceqr+LIm1NgNSUurZlHvA8Rpe+mhFgTytbnN3CbV6SShUVm+JX43Y3Rxc6TyXB/gpZclAIAgCAWGCdDRq02qKjM9FhmDkEIKoPuKde+JjlfeTS5/g2abi6cot2u1z4X5XLTDbQw60xTNibU1zBCQrAYgdplK9+2dNCL2Omo0xOE27/ALwyNqFajGKi+zho+tn26owbSx9FqARLXtSCrY91lW1Q6qAMxueJvcEgEaTCElO77TxWrUnS3Y9nhz4e9yimwV4gCAIAgFhgnQ0atNqiozPRYZg5BCCqD7itY98THK+8mlz/AAbNNxdOUW7Xa58L8rlim06dNBlZWCpTC0sh/jI6lnzFeDANzuQ+UgATF0cm8/Ps5Gyq8IRVneyWVuKev7zsZ8PtLDIzKhsi9mKbsDquZ3qBrIx1LqLWsRTFzIdObV3+/v5PcK9GMmlorWfm3w7fGxreJZS7FRZSzFR0BOg+E2Y3SzK2bTk2tDHJPAgCAS9kVlSvRdjZVqU2Y8dFcE6DjoJ4qJuLS5GWhJRqRk9E0Weztp0smVwtM9qrjIp/DSrAE5g9u8yagEi5IFxMU6cr5Z5fldxt0q8N20rLNP7Pv42JtXbVIGnlcWNSgatkY3RVKVL5lu1/iQR5DwqUs78nYzSxVPKz4q+XDR6kHGYyicL2asCwFEqCpuCFIqDRAq6njclgLk30nuMZb9+8wVKtN0NxPPL++FvfiyimwaAgCAIAgCAIJEECAIAgkQQIBabFsQVOq1O7pcciLX63zTmdoVXOs/8A65HZbLoKlh1nfez8zZqOyvY0Ios5Z2vmcZ7BaVQoMot3bALccM1+Wmp0jxE1vm7CkqUbQI+8VRqNOoUrU6tJrLTuovUBKU6mUq1sqhjdrH3fNptU8JCVRJO2Zhr13Tpyna9kabOnOGEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQSIIEAQBBIggQCPiNo9gcyk5h37C3Lm3TmJXY2lQl9SzfLUu9l1MVpB9Vc9O5ep0eptCpRoe2N7NWemMy00qWsMrZ2BsSXy2UJbS7HXgKelh1Fs6KdRpX/JRbf3zONohBRFNSVYszByV0ay2AsL249JZ4fBS31KVra95TY7akHTlTgnvZru4M190ItcEXFxcEXB4EdRodZaRnGWjOfnSnBJyVrnmejGIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIJEECAIAgkQQfHJANhc2Nh1Mh6ZHqKTaTyK3d6itbFBazOtruR2bHPVBXJT0BtmJA6WFtJR1N/eblqdlR6JU0oPq8DvNPYNGtSU1KQR2UFlQ91WIuQF9w2OlyshEt3KI7sbPwRzuwtfuLVqKoHMkDS+vC3DhwmRVJOO7fIwOjTVTpFHrPiaJtnabYiqXOUKO6gVcoCAkjTkTe8scNSdOGfEodo4lVqvV0WXf2kGbJXiAZ1p01UPXqrQpEkBmuS1uORF7z25ngOs0sTjFSe7Bb0uS4d70Xr2FhhNnzxHWb3Y83+FxN13f2JgK1MVaTe0Le2bMfesLgqLZTqNCL6icxi9r45T3X1Oy35d/sdNhtjYNRv9Xe/axbVN3cKRY0V9Lj5gzSjtXGRd1Uf2fqbctl4SSs6a9DSt5cPs+jUNIYtadbS9N8zAXFwGZVOTQg94y+wO1MVOO9Vp3jzWT8uPgUuM2LRX+GVnyennwKavQZDZhY2B5EEHUEEaEEcxL+lVhVjvQd0c7VozpS3JqzMcyGIQBALrYe7lXE973Kf5iOP9Uc/pKvH7Wo4Tq6y5e74epaYDZVXFdbSPP25m3YTdHDIO8pqHqzH6CwnNVtu4uo+q1Fdi97nS0dh4SC6y3n2v2sSqm7mFYWNFfS4+hmvHa2Mi7qo/s/VGeWysJJWdNenoUe1NyVsTQYg/lfUHybl63lthfiKSdsRHLmvb28iqxXw/FreoPPk/c07E4dqbFHUqw4gzp6VWFWKnB3TOYq0p0pOE1ZoxTIYxAEAlYbBM+vATRxOOhR6qzfL3Oh2T8O4jHLpJdSHPi+5fnTvJyYBRyv5yqntGtLR27jtsP8MbNorrQcnzbforI9Ng1P4RPEcbXX/Y2amwdm1FZ0V4XXoyPW2b+X4GbtHanCovFexzu0Pg+NnLCSz/ANX+H7+ZXOpBsdDLeMlJb0XkcNWozozdOorSWqPk9GIQBAEAQBBIggQBAEEiCDzUJsbcbG3nbSQ9Mj1FJySehQ7LYpkqLUIcd6/jx+N9b9ZVwpJq71OrnVadkslobZgN5NodkXXaDCzMgQ00cWCKb5muVHe+WlzpMNVxp27+Zkp70/K5SYihWNQiqxqVTZjULFwytqGDnVlPIceI0sbbtKN1ZFfiK8aa3peXEnItgB0AHwm6lZWKCT3m2fZJ5LfdnZHtNWx/hr3nP0Hr+hlbtTHfKUbr6nkvfwLPZeB+brWf0rX28TfsVg8LTZa9RaSGmvZrUfKuVL6AE6DX6nrOGVStUvBNu7u+18zuFTpwSyStkTMNTQC9MKFbvd0CxJ1vpob9Zik5N9YyJLgZZ5JIOMXDA5KvYhq3dKvkBqaWtY6vpYc5mh0usb5d+XseJbmj4kHbG7lJ6C06SBDTW1K3ID8Pkf8AOb+z9p1MPW3pu8ZPP37yv2js6GJo2S6y0f4ObMpBsdCNCPGd4mmro4Npp2Z8kkF1utsf2mr3v4SWLePRfXX0EqtrY/5Sl1fqenv4epa7KwHzVXrfStfY6WqgAAAADQAch4Tg223d6ndJJKyPsgkQBAKXefYoxFMlR96oup6/ynz5eMttlbQlhatpPqPXs7ffsKramz44qneP1rTt7DmZE7w4VqwggnbKwfaNc+6OPiekr9oYvoIWj9T/AG50Hw9spY2vvVPojr2vgvfs7y+7Gc1vH1BNJWQ7GRvE7w7GTvDeHYyN4bxE2js/OtwO8OHj4TfwGM6Ge7L6X9u33Oe+INlRxtHpIL+SKy7V/r7dvezXp058vEAQBAEAQSIIEAQBBIggQDE+GQm5RSepUTy4ReqMsa1SKspNeJkorkN0sp4aBf1EwVsJSq23lp4Gzh9o16Cai9eeZ9/UknzPGZoQjCKjHRGrVqzqzc5u7YnsxiAdG3HwoTDBubszHyByj6X9Zw+3qzni3HhFJfn8nb7CoqGFUuMm3+DTvtnqPnwy69laow6GpdRr4hTp/WMybGUbTfHLyNvFt3RtX2a0nXZ1EPfXOyg/0ZdinpY3HgRNDaTi8TLd7POxnwyapq5s80DOcX+1qm4x2Z75GpJ2Z5ZVuGAPg1yf6w6zptktOhZa3dytxN9/M6xu7UqNhcO1W/amlSL345igvfxnP4hRVWSjpd+pv023BX5Gib44UU8U9uDgP6nj8wT6zt9i1nVwcb8MvLT7WOH2zRVPFytxz8/7KSWpVHStzMKEwqnm5Ln42HyAnC7crOpi5LhGy/PqzutiUVTwkXxln++BF2nt7EtiHw2CoK70gpq1KzFUUsMyqLasSNdJq0sPSVNVa0rJ6JZt29DfnUlvbsEbBgjUNNDVCrVyjOEJKhra5SdSJqT3d57uhmje2Zmngkodu4raFN82GoUK1EKCVZ2Woza3C/hGlus26EMNKNqkmn3ZGGpKon1VdE7YG1kxdBK6BlDXurCxVlYqwPkwImKvRlRqOEuB7pzU43NA3rwop4qoBwYhx/zC5+d53WyKzq4SDeqy8svQ4Ta1FUsXNLR5+f8AZUSyK02/YmEy0V6t3j68PlachtOtv4mXZl5f2fT9gUVQwMOcus/H+rE/sZobxc747GN8b47GN4b47GN4b47GN4b5pu16GSs68r3+Iv8ArOywFXpcPGT5emR8q2zQVHG1IR0vfzz/ACQ5uFYIAgCAIJEECAIAgkQQIAgCAIAgCAdP3TcHCUrcgR6hiJwG2IuONqX7PRHfbIkpYOFu31LHFYSnVGWpTSooIIDqGFxwNiOMr4zlB3i7Fi4p6lDvxvQMBRUqoatUJWmp4Cw7zNbXKLjQcSRw4zbwOE+Ym76LX2MVar0ay1NC2P8AaZikqg4jLUok94BArKOqZeNuhvfqJa1tlUpR/jyff6mrDEyT62h1mrh6VZVLIlRdHQsqsOFwy3Gh8Zz6lOm2k2jetGWpIng9HPd/nviQOlNQf+5j+s7X4ei1hW+cn6JHGfEEk8SlyivVmty9KI6nu1UDYWiR+QD1HdPzE+e7Ui44yonz9cz6FsySlhKbXL0yNc+1NcWaFL2btcmc9r2WbNwGS+TvFb5r+OWZNluj0j6S17ZX07deJlxO/Zbpd7lriBgqIxObtrG+e+bLmOTPfXNly3vr11mrjej6eXR6fbtt4mSjvbi3tS7mqZTl299PaX+0waPb5L0+xyZ+zC2GbPbu+9mzZuVuVpfYR4X5Xr2vnfS/hx7rGjV6TpMrnUZQm8c636qA4oj8qID56t9CJ3GwItYNPm37fg4nb0k8XZcEvf8AJr0uilN+wKM2FU08ofsgFLXIzhbDNbW15w2MtHFTUtN5+Tdz6fs+o5YKnu67i80rFFW3nq4Wwx2FdLnKKlIqyMbX0BII56XvPawsKv8AhnfseTPXzs6eVWPitCXgd7sJVdKas4dyFUNTcXJ4a2t6zHPB1oRcnay7UZIY6nJpK+fYyy2ztSjhVV6zFVY5RZWbWxP4QbaCYaNKdZ2gZauIjTV5FFV36w+YJSp1qtRiAqhAtyeHvEHXym0sBUteTSXf7Gu9ow0im3+8y32I2LqFnxFJKNMgZKYbM4NzcuR3eFtJr1uhikqbbfF8PAy0atWTbmrLlxNd3ob/AOQw6BR8gf1nV7HTWEi3xv6nB/ENRTx0rcEl9v7KmWZSCAIAgCCRBAgCAIJEECAIAgCAIAgG6bgbRFmoE63zp9GH0PxnLfEWEd44iPc/w/x5HU/D2KVpUJd6/P73m5Tljpzk/wBsoPtGHP4eyYDzD975FJ0Gx7dHLv8AwaGL+pHPpcGqfoHc4MMBhQ3HsaXHpkFvlachjLfMTtzZa0f8a7i2q1AqlmNlAJJPIDUzBCDnJRirtnqc1CLlLRHJtrY01qz1PzHTwUaL8gJ9HweHWHoRpLgvvx+586xmIeIrSqPi/tw+xEmyaxvG4O0QUagTqpLr4qfeHodfWcn8Q4RqarrR5Pv4fvYdZ8P4pODoPVZru/fU26cydIU+8G8lHCZQ4d6r/wAOjSXM7+S9PEzZw+FnWu1klq3kkY6lWMMnqVf/AK3FMj2rB4nDU2IAquoKAnhnK6r8DNj/AI/eX8U4yfLj4GP5i31Jo2oVAVzAgra9wdLWve/S00FFuW6lnp4mdtWuY3xSCn2hbuZc1/5bXmT5ep0vQ2617W7TxKtBU+kb6tr37DlG0sWa1V6h/ExPkOQ9BYT6LhqCoUo01wR86xNd16sqj4sjTOYDddyMaGQ0T7y3ZfFSdfgfqJye38M4VFWWjyfev69Dsvh3GKVJ0HrHNdz/AL9S029u9RxiBKwaytmUqbEG1uPSxlLQxM6MrwOgq041VaRJpUqWHppTutOmihVDMBZVFhqx1nhynUk5atnpSjBJCnjaLGy1qZPQOp+hhwmtU/IKrF8SDi91cPUxK4p1JqrlI7xsSvukjmRp8B0mWGMqRpuknkzHKjCU1N6lninWmjO2iqCTMVKEqs1CGrPVavGlBzm8kjl2LxBqOznixJ+M+iUaSpU401olY+Z4itKtVlUlq3cwzKYRAEAQBBIggQBAEEiCBAEAQBAEAQDJh6zIwdSQym4I6zxUpxqRcJq6Z7p1JU5KcHZo6PsDeOniAFYhK3NTz8V6+XGcPtHZNTCtyjnDny7/AH0O42ftWniUoyyny593seN8d2lx9EITkqIc1N7XsbWII5qRx8geU08Hinh572qeqLCtSVRGibG+y+uao9qamtEG7CmxYuOguoyg8zx8OYtq21qaj/Enft4GrDCyb62h1V3WmtyQqKOegAH0lDCEqkt2Ku35m7Ocacd6TskaHvVvJ233VL+FzP5j+i/WdjsnZHy/8tX6+C5f2cftba3T/wAVL6eL5/0azL4oRAMuFxDU3V0NmU3BmOrShVg4TV0zJSqypTU4OzR0jYO8NPEADRKvNCePivUfOcNtDZVXCO6zhz9+XodxgNqUsUrPKXL2LM4VDUFUovahSgfKMwUm5AbiBflKzflu7t8uXAs91XuesRQWorI6hkYEMrAEEHiCDoREZOLunZktJ5Mq94qopUAigKGsgAFgFA4AchYW9Zf/AA3hunxu/LPdW946L38Cu2lU6Ojurjl4GmbX2lU7JKF/u7k+etwD4A/60nW1tn0oYp4m3Wa8rZX8Vb9Zy2NxdXoY0P8Ar6lJMhUiAZsHimpOrobMpuP2PhMVajCtB05q6ZmoV50aiqQdmjpGw9vUsSALhavNCf7vUThsfsyrhHfWPP35Hc4DalLFK2kuXtzI22tycHiqprVqbGoQAWFRxoNBoDaYKOPr0Y7kHl3I250ITd2iB/7Z7O50nP8A1an7zL/yuJ5ryR4+Vp8jZUp0sNSVbhKVNQouToALAXJufrNSMauIqWiryZlnUhRheTskaHvPvB7QciXFIH1Y9T0HQf6HZbK2WsKt+ec39uz3f6+N2rtV4p7kMoL79vt+2oJclKIAgCAIAgkQQIAgCCRBAgCAIAgCAIAgCCS2we8mJpiwqkjo9m+Z1+crq2ycJVd5Qs+zL0yLGjtbF0lZTuu3P+yXU3yxJGhQeIX9yZrR2Bg07tN+PtY2JbexbVlZeBUY3aNWsb1KjN4E6DyHASyoYWjQVqUUv3nqVtfFVq7vUk3+8iLNg1xAEAQADBKdi3we8uJpiwqFh0cBvmdfnK2tsjCVXdws+zL0yLGjtbF0lZTuu3P+yTU3xxJFgUXxC/uTNeOwcGnmm/H2sbEtvYtqyaXh7lXX2pWdsz1GY+J09BwHpLXDUKeG/wAMVH948yvnja85b05N+nkR61YubmZ5zcndmGpUlN3ZjnkxiAIB9BtqOMNXJTtmi3wm82KpiwqZh0cBvmdfnKytsfB1Xdws+zL+iyo7XxdJWUr9+f8AZIq744ojQoviF/e8ww2Dg4vNN+PtYzT27i5KyaXh73KfGY2pVN6js58Tw8hwHpLOjh6VFWpxS7itrYirWd6kmyPMxgEAQBAEAQBBIggQBAEEiCBAEAQBAEAQBAPVIgMCwutxcDmL629JDvbI9RtdX0NlO79MHKSbrVLsb/8A1AzrmHj92Tf+YTW6aWvZ9yy+TgnZ8Hf/AMc/b7kGlsMM2XtAH+6LKVNlFbKEs1+8QXQHQWvpe09utZXtz+xhWETdr55eF9PVXMWN2OaVMVGbitI2sffqZjlPQqqknzE9Rq7zsu0x1MNuQ3m+C4cXw+xVzKaogCAIAgF5h8BTaiMoDVezdypZkqZhmINNT3Hp5QDYXY97hpMDnJS7L+Hvc340YOnks7N8U/Dg19xV3eyrmNSyqGL3SxGVQ3dXNc3JsM2Q+msKvd2t+/veHgrK98uOX497EHa2FSmyBCSrU6b3OlywudOXlPdOTknfmYMRTjBrd5JkGZDXEAQBAPoF9BqYJSvkbPW2JSbIikA0yadYocxv2ZfMQdBaolRfLJNVVZK7fHT97i0lhacrRXDJ27r+qa8iLS2RSYU3+9K1DSUKCpZTUeqlyctmA7I2Fhe9ri2vp1ZK6yyv9re5iWGptKWdnbvV21y7D7U2HTuKSM5rstR0ByhTkqumXqSVRjy1sIVV/U9P6DwsL7kW953tyydvRFNjURajBCWQMQpPMA2v68Zmi20rmnUUVNqOhhnoxiAIAgCAIJEECAIAgkQQIAgCAIAgCAIAgEs7Sq3J7Q3NMUT40gAMvlYCeOjjy438TN09TW/C3gfH2hVKhC5yjL0v3fduRqQvIE6co3I3vYOvNx3b/q08uB8xWPq1AQ7lgXaob/nYAMfkJMYRjoiJ1pzVpPjfxI09GIQBAEAQCUu0aoTIH7tio0FwrXzKGtmCm5uAbanrPG5G9zMq81Hdvl+DK22a541OZY91dSVKsW071wbG97872kdFDkevmqvP0/e/mRsVinqNmdsxsBy0A0AAGgAHKeoxUVZGKdSU3eRhno8CAIAgH1WIIINiNQRyPhBKbTuj2ldlvZmF+NiRfnr1kNJnpTktGScBtR6Pu2OgAzX0AJNhYju3JJU908wZ5nTUtTJSxEqen7+8tDxRx7q+e93swBa5ylr3K66HU+pvxhwTViI1pKW9x9LkWezCIAgCAIAgCCRBAgCAfRBIggQBAEAQBAEAQBAEEiCBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQSfIIEA//Z" alt="" class="header__cart-img">
+                                        <div class="header__cart-item-info">
+                                            <div class="header__cart-item-head">
+                                                <h5 class="header__cart-item-name">Viplike có avatar</h5>
+                                                <div class="header__cart-item-price-wrap">
+                                                    <span class="header__cart-item--price">1.300đ</span>
+                                                    <span class="header__cart-item-multiply">x</span>
+                                                    <span class="header__cart-item-qnt">2</span>
+                                                </div>
+
+                                            </div>
+                                            <div class="header__cart-item-body">
+                                                <span class="header__cart-item-description">Phân loại: Viplike theo tháng</span>
+                                                <span class="header__cart-item-remove">Xóa</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="header__cart-item">
+                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJOfuPauFRrHzmDXdwQfjyNqwFesS9CSvKTQ&usqp=CAU" alt="" class="header__cart-img">
+                                        <div class="header__cart-item-info">
+                                            <div class="header__cart-item-head">
+                                                <h5 class="header__cart-item-name">Viplike có avatar</h5>
+                                                <div class="header__cart-item-price-wrap">
+                                                    <span class="header__cart-item--price">1.300đ</span>
+                                                    <span class="header__cart-item-multiply">x</span>
+                                                    <span class="header__cart-item-qnt">2</span>
+                                                </div>
+
+                                            </div>
+                                            <div class="header__cart-item-body">
+                                                <span class="header__cart-item-description">Phân loại: Viplike theo tháng</span>
+                                                <span class="header__cart-item-remove">Xóa</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="header__cart-item">
+                                        <img src="https://tangdonhang.net/wp-content/uploads/2019/11/dich-vu-tang-like-fanpage-facebook.png" alt="" class="header__cart-img">
+                                        <div class="header__cart-item-info">
+                                            <div class="header__cart-item-head">
+                                                <h5 class="header__cart-item-name">Viplike có avatar</h5>
+                                                <div class="header__cart-item-price-wrap">
+                                                    <span class="header__cart-item--price">1.300đ</span>
+                                                    <span class="header__cart-item-multiply">x</span>
+                                                    <span class="header__cart-item-qnt">2</span>
+                                                </div>
+
+                                            </div>
+                                            <div class="header__cart-item-body">
+                                                <span class="header__cart-item-description">Phân loại: Viplike theo tháng</span>
+                                                <span class="header__cart-item-remove">Xóa</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <a href="#" class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>
                             </div>
                         </div>
                     </div>
@@ -207,10 +284,541 @@ session_start();
             </div>
 
         </header>
-        <div class="container">
+        <div class="app__container">
+            <div class="grid">
+                <div class="grid__row app__content">
+                    <div class="grid__column-2">
+                        <nav class="category">
+                            <h3 class="category__heading">
+                                <i class="fas fa-list"></i>
+                                Danh mục</h3>
+                            <ul class="category-list">
+                                <li class="category-item category-item--active">
+                                    <a href="" class="category-item__link">Trang điểm mặt</a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="" class="category-item__link">Trang điểm môi</a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="" class="category-item__link">Trang điểm mắt</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="grid__column-10">
+                        <div class="home-filter">
+                            <span class="home-filter__label">Sắp xếp theo</span>
+                            <button class="btn home-filter__btn">Phổ biến</button>
+                            <button class="btn home-filter__btn btn--primary">Mới nhất</button>
+                            <button class="btn home-filter__btn">Bán chạy</button>
 
+                            <div class="select-input">
+                                <span class="select-input__label">Giá</span>
+                                <i class="select-input__icon fas fa-angle-down"></i>
+                                <!-- List option -->
+                                <ul class="select-input__list">
+                                    <li class="select-input__item">
+                                        <a href="" class="select-input__link">Giá: Thấp đến cao</a>
+                                    </li>
+                                    <li class="select-input__item">
+                                        <a href="" class="select-input__link">Giá: Cao đến thấp</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="home-filter__page">
+                                <span class="home-filter__page-num">
+                                    <span class="home-filter__page-current">1</span>/14
+                                </span>
+                                <div class="home-filter__page-control">
+                                    <a href="" class="home-filter__page-btn home-filter__page-btn-disabled">
+                                        <i class="home-filter__page-icon fas fa-angle-left"></i>
+                                    </a>
+                                    <a href="" class="home-filter__page-btn ">
+                                        <i class="home-filter__page-icon fas fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="home-product">
+                            <div class="grid__row grid__row-wrap">
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="grid__column-2-4">
+                                    <a class="home-product-item" href="#">
+                                        <!-- Product item -->
+                                        <div class="home-product-item__img" style="background-image: url(https://cf.shopee.vn/file/d803e1a982b8b1ce023fc1480048e409_tn)"></div>
+                                        <h4 class="home-product-item__name">Hệ thống hỗ trợ dịch vụ facebook</h4>
+                                        <div class="home-product-item__price">
+                                            <span class="home-product-item__price-old">1.200.000</span>
+                                            <span class="home-product-item__price-current">200.000</span>
+                                        </div>
+                                        <div class="home-product-item__action">
+                                            <span class="home-product-item__like home-product-item__like--liked">
+                                                <i class="far fa-heart home-product-item__like-icon-empty"></i>
+                                                <i class="fas fa-heart home-product-item__like-icon-fill"></i>
+                                            </span>
+                                            <div class="home-product-item_rating">
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class=" home-product-item_gold fas fa-star"></i>
+                                                <i class="home-product-item_gold fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <span class="home-product-item__sold">88 đã bán</span>
+                                        </div>
+                                        <div class="home-product-item__origin">
+                                            <span class="home-product-item__brand">Sbgroup</span>
+                                            <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        </div>
+                                        <div class="home-product-item__favourite">
+                                            <i class="fas fa-check"></i>
+                                            <span>Yêu thích</span>
+                                        </div>
+                                        <div class="home-product-item__sale-off">
+                                            <span class="home-product-item__sale-off-percent">10%</span>
+                                            <span class="home-product-item__sale-off-label">GIẢM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="pagination home-product__pagination">
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">
+                                    <i class="pagination-item__icon fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                            <li class="pagination-item pagination-item--active">
+                                <a href="" class="pagination-item__link ">1</a>
+                            </li>
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">2</a>
+                            </li>
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">3</a>
+                            </li>
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">4</a>
+                            </li>
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">5</a>
+                                </li>
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">...</a>
+                            </li>
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">14</a>
+                            </li>
+                            <li class="pagination-item">
+                                <a href="" class="pagination-item__link">
+                                    <i class="pagination-item__icon fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         <footer class="footer">
+            <div class="grid">
+                <div class="grid__row grid__row_footer">
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">Chăm sóc khách hàng</h3>
+                        <ul class="footer__list">
+                            <li class="footer__item">
+                                <a href="" class="footer__item_link">Trung Tâm Trợ Giúp</a>
+                            </li>
+                            <li class="footer__item">
+                                <a href="" class="footer__item_link">Sbgroup</a>
+                            <li class="footer__item">
+                                <a href="" class="footer__item_link">Hướng dẫn mua hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">Giới thiệu</h3>
+                        <ul class="footer__list">
+                            <li class="footer__item">
+                                <a href="" class="footer__item_link">Giới thiệu</a></li>
+                            <li class="footer__item"><a href="" class="footer__item_link">Điều khoản</a></li>
+                            <li class="footer__item"><a href="" class="footer__item_link">Tuyển dụng</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">Danh mục</h3>
+                        <ul class="footer__list">
+                            <li class="footer__item">
+                                <a href="" class="footer__item_link">Trang điểm mặt</a></li>
+                            <li class="footer__item"><a href="" class="footer__item_link">Trang điểm mắt</a></li>
+                            <li class="footer__item"><a href="" class="footer__item_link">Trang điểm môi</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">Theo dõi</h3>
+                        <ul class="footer__list">
+                            <li class="footer__item">
+                                <a href="" class="footer__item_link"><i class="footer__item_icon fab fa-facebook"></i>Facebook</a></li>
+                            <li class="footer__item"><a href="" class="footer__item_link"><i class="footer__item_icon fab fa-instagram"></i>Instagram</a></li>
+                            <li class="footer__item"><a href="" class="footer__item_link"><i class="footer__item_icon fab fa-linkedin"></i>Linkedin</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="grid__column-2-4">
+                        <h3 class="footer__heading">Vào cửa hàng trên ứng dụng</h3>
+                        <div class="footer__download">
+                            <img src="assets-css/img/QR-code.png" alt="QR-code" class="footer__download-qr">
+                            <div class="footer__download-apps">
+                                <a href="" class="footer__download-apps-link">
+                                    <img src="assets-css/img/CHplay.png" alt="CH-play" class="footer__download-apps-img">
+                                </a>
+                                <a href="" class="footer__download-apps-link">
+                                    <img src="assets-css/img/appStore.png" alt="appStore" class="footer__download-apps-img">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="grid">
+                    <div class="grid__row grid__footer">
+                        <p class="footer__text">© 2020 - Bản quyền thuộc về Công ty cổ phần Truyền Thông & Công Nghệ SBGroup</p>
+                    </div>
+                </div>
+            </div>
 
         </footer>
     </div>
