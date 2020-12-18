@@ -12,11 +12,17 @@ require_once 'database.php';
  *       / detail.php: Chi tiết sp
  *       / database.php: kết nối CSDL
  * */
-// hiển thị session của message nếu có
+// hiển thị session dạng success của message nếu có
 if (isset($_SESSION['success'])) {
     echo $_SESSION['success'];
     //session dạng flash
     unset($_SESSION['success']);
+}
+// hiển thị session dạng error của message nếu có
+if (isset($_SESSION['error'])) {
+    echo $_SESSION['error'];
+    //session dạng flash
+    unset($_SESSION['error']);
 }
 // lấy dữ liệu từ bảng products để đổ ra table
 // tạo câu truy vấn : lấy danh sách theo thứ tự mới nhất
