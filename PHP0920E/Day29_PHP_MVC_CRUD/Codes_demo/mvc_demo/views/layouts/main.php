@@ -24,8 +24,23 @@
     </div>
     <div class="main">
 <!--        Do file layout là file được gọi ở bất cứ 1 chức năng / phương thức nào, nên hiển thị các thông báo lỗi/ thành công tại file này-->
+
         <h3 style="color: red">
             <?php echo $this->error;?>
+            <?php
+            if (isset($_SESSION['error'])){
+                echo $_SESSION['error'];
+                unset($_SESSION['error']);
+            }
+            ?>
+            <h3 style="color: green">
+                <?php echo $this->error;?>
+                <?php
+                if (isset($_SESSION['success'])){
+                    echo $_SESSION['success'];
+                    unset($_SESSION['success']);
+                }
+                ?>
         </h3>
         <?php echo $this->content; ?>
     </div>

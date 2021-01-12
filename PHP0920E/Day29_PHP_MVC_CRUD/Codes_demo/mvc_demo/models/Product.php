@@ -10,7 +10,7 @@ public $id;
 public $name;
 public $price;
 public $avatar;
-public $creat_at;
+public $created_at;
 // Phương thức thêm sp vào bảng
 public function insert(){
     // Viết câu truy vấn , áp dụng truyền tham số vào câu truy vấn -> SQLInjection
@@ -26,5 +26,31 @@ public function insert(){
     // Thực thi
     $is_insert = $obj_insert->execute($inserts);
     return $is_insert;
+}
+//liệt kê sp
+public function getAll(){
+    //Viết truy vấn:
+    $sql_select_all = "SELECT * FROM products ORDER BY created_at DESC ";
+    // Cbi obj truy vấn
+    $obj_select_all = $this->connection->prepare($sql_select_all);
+    // tạo mảng truyền giá trị -> bỏ qua
+    // thực thi obj truy vấn
+    $obj_select_all->execute();
+    // lấy ra mảng kết hợp từ obj truy vấn
+    $products = $obj_select_all->fetchAll(PDO::FETCH_ASSOC);
+    return $products;
+}
+// lấy sp theo id
+public function getOne($id){
+    // viết truy vấn
+    $sql_select_one ="
+    SELECT * FROM products WHERE id = $id";
+    // Chuẩn bị obj truy vấn
+    $obj_select_one = $this->connection->prepare($sql_select_one);
+    // thực thi obj truy vấn:
+    $obj_select_one->execute();
+    // Lấy mảng kết hợp 1 chiều
+    $product = $obj_select_one->fetchAll(PDO::FETCH_ASSOC);
+    return $product;
 }
 }

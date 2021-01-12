@@ -18,6 +18,7 @@ class Model{
     public function getConnection(){
         try{
             $connection = new PDO(Database::DB_DSN, Database::DB_USERNAME, Database::DB_PASSWORD);
+            return $connection;
         } catch (PDOException $e){
             die("Lỗi kết nối: ". $e->getMessage());
         }

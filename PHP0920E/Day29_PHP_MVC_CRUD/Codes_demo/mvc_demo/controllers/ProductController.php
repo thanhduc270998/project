@@ -75,10 +75,18 @@ class ProductController extends Controller {
                   $product_model->price = $price;
                   $product_model->avatar = $avatar;
                   $is_insert = $product_model->insert();
-                  var_dump($is_insert);
+
+                    if ($is_insert){
+                        $_SESSION['success'] = 'Thêm mới sản phẩm thành công';
+                        header('Location: index.php?controller=product&action=index.php');
+                        exit();
+                    }  else{
+                        $this->error = ' Thêm sản phẩm thất bại';
+                    }
               }
           }
       }
+
     //Gọi view để hiển thị
     //Lấy nội dung view tương ứng, đổ vào thuộc tính
     //content của class cha
@@ -97,6 +105,51 @@ class ProductController extends Controller {
   // Hiển thị ds sp
   //index.php?controller=product
   public function index() {
-    echo "Hàm index";
+//    echo "Hàm index";
+      // gọi model lấy tất cả bản ghi đang có
+      $product_model = new Product();
+      $products = $product_model->getAll();
+      //tạo mảng truyền ra view 1 cách tường minh
+      $arr_view = [
+        // key là tên biến sẽ dùng ởview
+          ////value là giá trị của biến sẽ truyền ra view
+          'products' => $products
+      ];
+      echo "<pre>";
+      print_r($products);
+      echo "</pre>";
+//      Lấy nội dung view tương ứng
+      $this->content = $this->render('views/products/index.php', $arr_view);
+      // Gọi layout để hiển thị view vừa lấy đc
+      require_once  'views/layouts/main.php';
   }
+
+  // xem chi tiết sản phẩm
+    public function detail(){
+      echo "<pre>";
+      print_r($_GET);
+      echo "</pre>";
+      // Validate tham số id
+        if (!isset($_GET['id']) || !is_numeric($_GET['id'])){
+            $_SESSION['error'] = ' ID không hợp lệ';
+            header('Location: index.php?controller=product');
+            exit();
+        }
+        $id = $_GET['id'];
+        // gọi model để lấy bản ghi tương ứng dựa theo id
+        $product_model = new Product();
+        $product= $product_model->getOne($id);
+//        echo "<pre>";
+//        print_r($product);
+//        echo "</pre>";
+        //tạo mảng để truyền biến ra view
+        $arr_view = [
+            'product' => $product
+        ];
+      // LẤY nội dung view detail
+        $this->content=
+            $this->render('views/products/detail.php' , $arr_view);
+        // gọi layout hiển thị nội dung view vừa lấy đc
+        require_once 'views/layouts/main.php';
+    }
 }
