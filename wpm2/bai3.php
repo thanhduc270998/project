@@ -4,7 +4,9 @@ $error = '';
 if (isset($_POST['submit'])){
     $name = $_POST['name'];
     $age = $_POST['age'];
+    if(isset($_POST['gender'])){
     $gender = $_POST['gender'];
+    };
     $content = $_POST['content'];
     if (empty($name) || empty($age) || empty($gender) || empty($content)){
         $error = 'Không được để trống';
